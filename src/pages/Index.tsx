@@ -1,13 +1,33 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import { AppProvider } from '../context/AppContext';
+import Sidebar from '../components/Sidebar';
+import Calendar from '../components/Calendar';
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <AppProvider>
+      <div className="h-screen flex flex-col bg-background">
+        <header className="border-b p-4">
+          <h1 className="text-2xl font-bold">Role-Goal-Task Manager</h1>
+        </header>
+        
+        <div className="flex-1 overflow-hidden">
+          <ResizablePanelGroup direction="horizontal">
+            <ResizablePanel defaultSize={25} minSize={20}>
+              <Sidebar />
+            </ResizablePanel>
+            
+            <ResizableHandle withHandle />
+            
+            <ResizablePanel defaultSize={75}>
+              <Calendar />
+            </ResizablePanel>
+          </ResizablePanelGroup>
+        </div>
       </div>
-    </div>
+    </AppProvider>
   );
 };
 
