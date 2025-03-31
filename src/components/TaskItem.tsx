@@ -4,7 +4,7 @@ import { useAppContext } from '../context/AppContext';
 import { Task } from '../data/types';
 import { Checkbox } from '@/components/ui/checkbox';
 import { formatDate } from '../utils/dateUtils';
-import { Calendar, Trash, GripVertical } from 'lucide-react';
+import { Calendar, Trash, GripVertical, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface TaskItemProps {
@@ -23,6 +23,12 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
       const rect = taskRef.current.getBoundingClientRect();
       e.dataTransfer.setDragImage(taskRef.current, rect.width / 2, rect.height / 2);
     }
+  };
+
+  // Format the hour display
+  const formatHour = (hour?: number) => {
+    if (hour === undefined) return '';
+    return hour === 12 ? '12pm' : hour > 12 ? `${hour - 12}pm` : `${hour}am`;
   };
 
   return (
@@ -50,6 +56,12 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
           <div className="flex items-center text-xs text-muted-foreground">
             <Calendar className="h-3 w-3 mr-1" />
             {formatDate(task.scheduledDate)}
+            {task.scheduledHour !== undefined && (
+              <>
+                <Clock className="h-3 w-3 ml-2 mr-1" />
+                {formatHour(task.scheduledHour)}
+              </>
+            )}
           </div>
         )}
       </div>

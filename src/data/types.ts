@@ -6,6 +6,7 @@ export interface Task {
   completed: boolean;
   goalId: string;
   scheduledDate?: string; // ISO date string
+  scheduledHour?: number; // Hour of the day (0-23)
 }
 
 export interface Goal {
