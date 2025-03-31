@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Role, Goal, Task } from '../data/types';
 import { initialRoles } from '../data/initialData';
@@ -158,7 +157,10 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   };
 
   const unscheduleTask = (taskId: string) => {
-    updateTask(taskId, { scheduledDate: undefined });
+    updateTask(taskId, { 
+      scheduledDate: undefined,
+      scheduledHour: undefined 
+    });
   };
 
   const selectRole = (roleId: string | null) => {

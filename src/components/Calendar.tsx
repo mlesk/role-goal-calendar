@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useAppContext } from '../context/AppContext';
 import { getDaysOfWeek, getHoursOfDay, parseTimeString } from '../utils/dateUtils';
